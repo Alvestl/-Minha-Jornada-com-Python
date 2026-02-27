@@ -1,0 +1,46 @@
+import os
+
+palavra_secreta = "invenção"
+letras_acertas = ""
+numero_tentativas = 0
+
+while True:
+    letra_dig = input("Digite uma letra (ou a palavra toda): ").lower().strip()
+    numero_tentativas += 1
+
+  
+    if len(letra_dig) > 1:
+        if letra_dig == palavra_secreta:
+            
+            letras_acertas = palavra_secreta 
+        else:
+            print(f"O chute '{letra_dig}' está incorreto!")
+            continue 
+
+
+    elif letra_dig in palavra_secreta:
+      
+        if letra_dig not in letras_acertas:
+            letras_acertas += letra_dig
+
+    palavra_formada = ""
+    for letra in palavra_secreta:
+        if letra in letras_acertas:
+            palavra_formada += letra
+        else:
+            palavra_formada += "*"
+
+    print("Palavra Formada:", palavra_formada)
+
+    if palavra_formada == palavra_secreta:
+       
+        os.system("cls" if os.name == "nt" else "clear") 
+        print("★" * 20)
+        print("VOCÊ GANHOU! PARABÉNS!")
+        print(f"A palavra era: {palavra_secreta}")
+        print(f"Total de tentativas: {numero_tentativas}")
+        print("★" * 20)
+        
+       
+        letras_acertas = ""
+        numero_tentativas = 0
